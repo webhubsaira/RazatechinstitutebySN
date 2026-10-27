@@ -1,37 +1,29 @@
 # Raza Tech Institute
 
-Static Vite site with Supabase email verification and enrollment storage.
+Static Vite site with Vercel API routes for enrollment submissions and Supabase for storage.
 
 ## Supabase setup
 
 1. Create a Supabase project and open **SQL Editor**.
-2. Run [`supabase/migrations/20261027220000_create_enrollments.sql`](./supabase/migrations/20261027220000_create_enrollments.sql).
-   It creates the `enrollments` table, row-level security, a verified-user enrollment function, and a trigger that saves a new student's application when their email is confirmed.
-3. In **Authentication → Providers → Email**, enable email/password sign-in and **Confirm email**.
-4. In **Authentication → URL Configuration**, set **Site URL** to your deployed Vercel URL. Add these redirect URLs:
-   - `http://localhost:3000/**` for local development.
-   - `https://your-production-domain/**` for production.
-   - Your Vercel preview URL pattern if preview deployments should send confirmation links back to previews.
-5. Configure a production SMTP provider in Supabase before inviting real students; default email sending is rate-limited.
+2. For a new database, run these migrations in order:
+   - [`supabase/migrations/20261027220000_create_enrollments.sql`](./supabase/migrations/20261027220000_create_enrollments.sql)
+   - [`supabase/migrations/20261028010500_public_whatsapp_enrollments.sql`](./supabase/migrations/20261028010500_public_whatsapp_enrollments.sql)
+3. If the original enrollments migration has already been run, run only the second migration. It removes the old email-verification flow and allows enrollment records without user accounts or email addresses.
+4. In **Project Settings → API**, copy the Project URL and the `service_role` secret key for the Vercel environment variables. The service-role key is secret and must never be exposed in browser code.
 
-## Local development
-
-1. Install dependencies with `npm install`.
-2. Copy `.env.example` to `.env.local`.
-3. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` from the Supabase project's API settings.
-4. Start the site with `npm run dev`.
-
-The browser uses only the Supabase anon/publishable key. Never expose a Supabase `service_role` or secret key in frontend code or any `VITE_` environment variable.
+The second migration creates the rate-limit table and a database function that only the server-side service role can execute. Row-level security stays enabled on `public.enrollments`; the browser cannot write directly to the table. The API limits each client IP to five submissions per 15 minutes.
 
 ## Deploy to Vercel
 
-1. Import the repository into Vercel. Vercel detects Vite automatically; use `npm run build` and `dist` if prompted.
-2. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` under **Project Settings → Environment Variables** for each environment you deploy.
-3. Redeploy after adding or changing environment variables.
-4. Add the deployed domain to Supabase's allowed redirect URLs and set it as the Supabase Site URL.
+1. Import the repository into Vercel. Use `npm run build` as the build command and `dist` as the output directory.
+2. Add these environment variables in **Project Settings → Environment Variables**:
+   - `SUPABASE_URL` — the project URL, for example `https://your-project-id.supabase.co` (do not add `/rest/v1/`).
+   - `SUPABASE_SERVICE_ROLE_KEY` — the Supabase service-role secret key.
+3. Add the variables to the Vercel environments you use and redeploy.
+4. Test an enrollment from the deployed site. A successful submission is stored in **Supabase → Table Editor → `enrollments`**. The team can use the submitted WhatsApp number to contact the student.
 
-## Enrollment and data access
+The form does not collect email addresses or passwords and does not send emails. Keep the service-role key in Vercel's server environment only; never prefix it with `VITE_`.
 
-New students create an account with their enrollment. Their application is stored in Auth metadata only until they verify their email; a database trigger then copies it into `public.enrollments`. Existing verified students can sign in and submit another enrollment. The `submit_enrollment` database function checks the authenticated user and confirmed email server-side.
+## Local development
 
-Row-level security permits authenticated students to read only their own enrollment records. Direct client inserts, updates, and deletes are not granted. Review applications from the Supabase dashboard using an appropriately authorized project account.
+The Vercel API route is at [`api/enrollments.js`](./api/enrollments.js). To test submissions locally, use the Vercel CLI (`vercel dev`) and set the two server environment variables in Vercel's local environment. Vite's `npm run dev` serves the static site but does not execute Vercel API routes.

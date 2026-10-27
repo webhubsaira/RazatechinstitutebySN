@@ -495,7 +495,7 @@
               <div class="step-number">3</div>
               <h3 class="step-title">Receive Confirmation</h3>
               <p class="step-desc">
-                Our institute reviews your submitted details and contacts you directly via WhatsApp or email with your class schedule and orientation.
+                Our institute reviews your submitted details and contacts you on WhatsApp with your class schedule and orientation.
               </p>
             </div>
           </div>
@@ -511,7 +511,7 @@
             <span class="eyebrow">STUDENT REGISTRATION</span>
             <h2 class="section-title" id="enrollmentHeading">Enroll at Raza Tech Institute</h2>
             <p class="section-desc">
-              Submit your details and verify your email to send your enrollment request. Our admissions coordinator will then guide you through class timing and start dates.
+              Submit your details and our admissions coordinator will contact you on WhatsApp about class timing and start dates.
             </p>
           </div>
 
@@ -527,26 +527,13 @@
             <div id="pageFormStatus" class="form-status-box" role="alert"></div>
 
             <form id="pageEnrollmentForm" novalidate>
-              <!-- Name & Email -->
-              <div class="form-grid-2">
-                <div class="form-group">
-                  <label for="pageFullName" class="form-label">Full Name <span class="required-star">*</span></label>
-                  <input type="text" id="pageFullName" name="fullName" class="form-control" placeholder="e.g. Muhammad Raza" required />
-                  <span class="field-error-msg">Please enter your full name.</span>
-                </div>
-
-                <div class="form-group">
-                  <label for="pageEmail" class="form-label">Email Address <span class="required-star">*</span></label>
-                  <input type="email" id="pageEmail" name="email" class="form-control" placeholder="e.g. student@example.com" required />
-                  <span class="field-error-msg">Please enter a valid email address.</span>
-                </div>
-              </div>
-
               <div class="form-group">
-                <label for="pagePassword" class="form-label">Password <span class="required-star">*</span></label>
-                <input type="password" id="pagePassword" name="password" class="form-control" autocomplete="current-password" minlength="8" maxlength="72" placeholder="Create one or enter your existing password" required />
-                <span class="field-error-msg">Use a password with at least 8 characters.</span>
+                <label for="pageFullName" class="form-label">Full Name <span class="required-star">*</span></label>
+                <input type="text" id="pageFullName" name="fullName" class="form-control" maxlength="120" placeholder="e.g. Muhammad Raza" required />
+                <span class="field-error-msg">Please enter your full name.</span>
               </div>
+
+              <input type="text" name="website" class="form-trap" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
               <!-- WhatsApp & Age Group -->
               <div class="form-grid-2">
@@ -611,7 +598,7 @@
               <div class="consent-row">
                 <input type="checkbox" id="pageConsent" name="consent" class="consent-checkbox" required />
                 <label for="pageConsent" class="consent-label">
-                  I agree to be contacted by Raza Tech Institute regarding my enrollment and course schedule. <span class="required-star">*</span>
+                  I agree to be contacted on WhatsApp by Raza Tech Institute regarding my enrollment and course schedule. <span class="required-star">*</span>
                 </label>
               </div>
 
@@ -698,7 +685,7 @@
               </button>
               <div class="faq-answer-collapse">
                 <div class="faq-answer-content">
-                  Once your enrollment request is received, our admissions coordinator will communicate with you directly via WhatsApp or email with your lesson timetable and study materials.
+                  Once your enrollment request is received, our admissions coordinator will contact you on WhatsApp with your lesson timetable and study materials.
                 </div>
               </div>
             </div>
@@ -870,7 +857,7 @@
             Enroll at Raza Tech Institute
           </h2>
           <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">
-            Submit your details and verify your email to send your enrollment request.
+            Submit your details and our admissions coordinator will contact you on WhatsApp about the next steps.
           </p>
         </div>
 
@@ -878,24 +865,13 @@
 
         <form id="modalEnrollmentForm" novalidate>
           <div class="form-grid-2">
-            <div class="form-group">
-              <label for="modalFullName" class="form-label">Full Name <span class="required-star">*</span></label>
-              <input type="text" id="modalFullName" name="fullName" class="form-control" placeholder="e.g. Muhammad Raza" required />
-              <span class="field-error-msg">Please enter your full name.</span>
-            </div>
-
-            <div class="form-group">
-              <label for="modalEmail" class="form-label">Email Address <span class="required-star">*</span></label>
-              <input type="email" id="modalEmail" name="email" class="form-control" placeholder="e.g. student@example.com" required />
-              <span class="field-error-msg">Please enter a valid email address.</span>
-            </div>
-          </div>
-
           <div class="form-group">
-            <label for="modalPassword" class="form-label">Password <span class="required-star">*</span></label>
-            <input type="password" id="modalPassword" name="password" class="form-control" autocomplete="current-password" minlength="8" maxlength="72" placeholder="Create one or enter your existing password" required />
-            <span class="field-error-msg">Use a password with at least 8 characters.</span>
+            <label for="modalFullName" class="form-label">Full Name <span class="required-star">*</span></label>
+            <input type="text" id="modalFullName" name="fullName" class="form-control" maxlength="120" placeholder="e.g. Muhammad Raza" required />
+            <span class="field-error-msg">Please enter your full name.</span>
           </div>
+
+          <input type="text" name="website" class="form-trap" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
           <div class="form-grid-2">
             <div class="form-group">
@@ -955,7 +931,7 @@
           <div class="consent-row">
             <input type="checkbox" id="modalConsent" name="consent" class="consent-checkbox" required />
             <label for="modalConsent" class="consent-label">
-              I agree to be contacted by Raza Tech Institute regarding my course enrollment. <span class="required-star">*</span>
+              I agree to be contacted on WhatsApp by Raza Tech Institute regarding my course enrollment. <span class="required-star">*</span>
             </label>
           </div>
 

@@ -25,11 +25,7 @@ export function initializeSupabaseEnrollment() {
       const hasPendingEnrollment = Boolean(session?.user.user_metadata?.pending_enrollment);
 
       if (event === 'SIGNED_IN' && isVerificationRedirect && hasPendingEnrollment) {
-        showStatus(
-          document.getElementById('pageFormStatus'),
-          'Your email is verified and your enrollment request has been submitted. Our team will contact you about the next steps.',
-          'success'
-        );
+        showSubmittedStatus(document.getElementById('pageFormStatus'));
         window.history.replaceState({}, document.title, window.location.pathname);
       }
     });
@@ -177,7 +173,7 @@ async function handleEnrollmentSubmission(form) {
 
     showStatus(
       statusBox,
-      `Check ${email} for the verification link. Your enrollment will be submitted after you verify your email.`,
+      `Thank you for registering! We sent a verification link to ${email}. Please verify your email to complete your registration. After verification, our team will contact you shortly on WhatsApp.`,
       'success'
     );
     form.reset();
@@ -228,7 +224,7 @@ function getVerificationRedirectUrl() {
 function showSubmittedStatus(statusBox) {
   showStatus(
     statusBox,
-    'Your email is verified and your enrollment request has been submitted. Our team will contact you about the next steps.',
+    'Thank you for registering! Your enrollment is confirmed. Our team will contact you shortly on WhatsApp.',
     'success'
   );
 }

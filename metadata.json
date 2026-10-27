@@ -1,0 +1,6 @@
+{
+  "name": "NexaLearn Institute",
+  "description": "An online learning institute offering practical, career-oriented courses in Arabic, English, and digital marketing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

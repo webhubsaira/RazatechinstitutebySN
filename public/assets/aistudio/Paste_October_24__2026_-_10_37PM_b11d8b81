@@ -1,0 +1,913 @@
+Act as a senior UI/UX designer, professional frontend developer, education website strategist, and conversion-focused web designer. Build a complete, polished, production-quality, fully responsive bilingual online learning institute website inspired by the visual reference image I provided. Use the image only as design inspiration for its premium layout, teal-and-white color scheme, spacious composition, modern typography, illustrated hero section, floating statistics, rounded service cards, subtle gradients, and professional visual hierarchy. Do not copy the original brand name, logo, wording, or business identity.
+
+**IMPORTANT TECHNOLOGY REQUIREMENT:** Build the entire website using ONLY HTML5, CSS3, and vanilla JavaScript. Do not use React, Next.js, Vue, Angular, TypeScript, JSX, Tailwind CSS, Bootstrap, jQuery, Node.js, or any frontend framework. The final project must be suitable for direct deployment on Hostinger shared hosting using static files. Use semantic HTML, modern CSS, reusable JavaScript functions, and clean, maintainable code.
+
+The website is for a professional online education institute offering courses in Arabic and English. The design must appeal to students, university learners, working professionals, international learners, and people who want to develop new skills online.
+
+Do not just create a visual mockup. Build a complete, functional frontend website with realistic educational content, interactive elements, responsive layouts, bilingual functionality, course filtering, and working navigation.
+
+# 1. BRAND IDENTITY AND DESIGN DIRECTION
+
+Create an original, premium educational brand. Use the working brand name **“NexaLearn Institute”** throughout the website, with a simple original text-based logo and a small geometric graduation-cap or learning-inspired icon created using inline SVG or CSS. Keep the logo easy to replace later.
+
+The brand should communicate:
+- Quality online education.
+- Accessible learning from anywhere.
+- Practical, career-oriented skills.
+- Professional instructors.
+- Flexible learning in Arabic and English.
+- Trust, growth, and lifelong learning.
+
+Use the following visual direction:
+- Modern, minimalist, premium educational technology website.
+- White and very light cyan backgrounds.
+- Deep navy text.
+- Teal and turquoise accents.
+- Spacious sections with clear visual hierarchy.
+- Rounded cards with subtle shadows.
+- Soft organic background shapes.
+- High-quality educational photography and modern 3D illustrations.
+- Strong, readable typography.
+- Consistent alignment, spacing, and component styling.
+- A clean, friendly, credible, international appearance.
+
+Avoid a generic template appearance. Every section should look intentionally designed and visually connected to the overall brand.
+
+# 2. COLOR PALETTE
+
+Use a consistent design system based on these colors:
+
+- Primary teal: #0796A5
+- Deep teal: #087F8C
+- Bright turquoise: #25C5D0
+- Dark navy: #111B35
+- Secondary text: #52627A
+- Light cyan: #E8F9FB
+- Pale blue: #F3FAFC
+- White: #FFFFFF
+- Border: #E4EDF2
+- Success green: #20A67A
+- Soft purple: #8B7CF6
+- Warm accent: #FFBF47
+
+Use teal for important headings, highlighted words, icons, primary buttons, links, and selected interface elements. Use navy for main headings and body copy in a highly readable contrast.
+
+Create soft gradients such as:
+- Linear gradients from #0796A5 to #25C5D0.
+- Very light cyan gradients for hero backgrounds.
+- Subtle white-to-pale-blue section backgrounds.
+
+Use colors consistently across navigation, buttons, course cards, icons, badges, and footer elements.
+
+# 3. TYPOGRAPHY AND DESIGN SYSTEM
+
+Use a clean modern sans-serif font. Prefer Google Fonts such as Inter for English and Cairo for Arabic, with appropriate system-font fallbacks if external fonts cannot load.
+
+Define CSS custom properties for:
+- Brand colors.
+- Typography scale.
+- Spacing.
+- Border radius.
+- Shadows.
+- Content widths.
+- Transition timing.
+
+Typography hierarchy:
+- Hero heading: large, bold, responsive, approximately 48–68px on desktop.
+- Section headings: approximately 32–42px on desktop.
+- Card headings: approximately 18–22px.
+- Body text: approximately 15–18px.
+- Supporting labels: approximately 11–13px.
+- Buttons: approximately 14–16px, medium or semibold weight.
+
+Use balanced line lengths, comfortable line heights, strong contrast, and clear visual grouping. Apply responsive typography with CSS clamp().
+
+Use a centered main container with a maximum width of approximately 1240px. Create consistent spacing between sections, cards, and content blocks.
+
+# 4. WEBSITE HEADER AND NAVIGATION
+
+Build a premium, clean header similar in visual weight to the reference image.
+
+Desktop layout:
+- Original brand logo at the far left.
+- Navigation links in the center.
+- Language selector and prominent CTA on the right.
+
+Navigation links:
+- Home
+- Courses
+- Learning Paths
+- About Us
+- Instructors
+- Blog
+- Contact
+
+Include a language toggle labeled “EN | العربية” or an accessible equivalent.
+
+Include a primary navigation CTA: “Explore Courses”.
+
+Header behavior:
+- Sticky navigation with a subtle background and shadow after scrolling.
+- Smooth scrolling to page sections.
+- Active or hover states on navigation links.
+- Responsive mobile menu with a hamburger button.
+- Accessible keyboard navigation and focus indicators.
+- Close the mobile menu after selecting a link.
+- Prevent horizontal overflow on small screens.
+
+On mobile, show the logo, language selector, and hamburger menu in a clean compact header. Display the navigation in an animated dropdown or slide-down panel.
+
+# 5. FULL BILINGUAL FUNCTIONALITY: ENGLISH AND ARABIC
+
+This is a mandatory core feature, not a decorative language button.
+
+Implement a complete English/Arabic language switcher using vanilla JavaScript and a centralized translation dictionary.
+
+English must be the default language.
+
+When the visitor selects Arabic:
+- Translate all interface text into natural, professional Arabic.
+- Change the document language to Arabic using lang="ar".
+- Set the document direction to RTL using dir="rtl".
+- Use the Cairo font or another appropriate Arabic font.
+- Mirror the layout where appropriate.
+- Correctly align navigation, text, icons, card content, buttons, form fields, breadcrumbs, and footer sections.
+- Adjust directional arrows and chevrons where necessary.
+- Preserve the visual hierarchy and spacing.
+- Translate buttons, validation messages, course categories, filters, badges, instructor labels, FAQ questions, testimonials, form labels, and all major content.
+- Keep course information coherent in both languages.
+- Ensure punctuation and mixed Arabic/English content display correctly.
+
+When English is selected:
+- Restore lang="en" and dir="ltr".
+- Restore the English content and original alignment.
+
+The language switcher must update the entire page without reloading it. Use a centralized JavaScript translation object and data attributes such as data-i18n wherever practical. Translate dynamically generated course cards and filter options as well.
+
+Remember the visitor's language preference using localStorage when available, with safe fallback behavior if storage is unavailable.
+
+The Arabic version must be designed deliberately for RTL rather than simply right-aligning English content.
+
+# 6. HERO SECTION
+
+Create a visually impressive, conversion-focused hero section directly below the header.
+
+Desktop layout: two columns.
+
+Left column:
+- Small uppercase eyebrow label: “LEARN TODAY. LEAD TOMORROW.”
+- Large two-line or three-line heading:
+
+  “Build Your Future With Smarter Learning”
+
+- Highlight the phrase “Smarter Learning” or another key phrase in teal.
+- Supporting text:
+
+  “Discover practical online courses in Arabic and English, learn from experienced instructors, and build the skills that move your goals forward.”
+
+- Two CTA buttons:
+  1. Primary: “Explore All Courses”
+  2. Secondary: “How It Works”
+
+- A small trust row beneath the buttons featuring three or four compact avatar circles or learner icons and text such as “Flexible learning for ambitious learners”.
+
+Right column:
+- A high-quality, attractive educational hero illustration or photographic composition.
+- Feature a young adult learner using a laptop in a bright, modern study environment.
+- Include subtle floating UI elements representing online learning:
+  - A course progress card.
+  - A small certificate icon.
+  - A language-learning badge.
+  - A floating “Learning in Progress” label.
+  - A small progress indicator.
+- Include a subtle desk, books, notebook, and plant if they fit the composition.
+- Use a pale cyan organic background shape behind the main image.
+- Keep the image naturally integrated with the layout rather than appearing as a rigid rectangular stock-photo box.
+
+The visual quality should match a premium education startup landing page.
+
+Use a real image asset where available. If image-generation tools are available inside the development environment, generate an original high-quality hero illustration. Otherwise, use a suitable remote image from a reputable image source or a custom inline SVG illustration. Do not leave the image area empty or use a broken-image placeholder.
+
+Create the mobile hero with the heading and CTAs first, followed by the illustration. Maintain readable text, good spacing, and a visually appealing composition.
+
+# 7. TRUST AND ACHIEVEMENT STATISTICS
+
+Directly beneath the hero, add a floating statistics panel inspired by the reference image.
+
+Create four compact statistic blocks with icons:
+- 250+ Learning Resources
+- 40+ Expert-Led Courses
+- 15+ Professional Instructors
+- 95% Learner Satisfaction
+
+These are illustrative launch figures, not verified institutional claims. Keep the figures easy to edit and do not present them as independently verified.
+
+Use:
+- White card background.
+- Rounded corners around 18–24px.
+- Soft shadow.
+- Thin vertical dividers on desktop.
+- Circular pale-cyan icon backgrounds.
+- Bold navy statistics.
+- Small secondary labels.
+
+Use an elegant responsive layout: four columns on desktop, two columns on tablets and small phones, and a single column only when the available width requires it.
+
+Optionally animate counters when the panel enters the viewport, but respect reduced-motion preferences.
+
+# 8. WHY CHOOSE OUR INSTITUTE SECTION
+
+Create a centered section with a small uppercase label:
+
+“WHY LEARN WITH NEXALEARN?”
+
+Main heading:
+
+“More Than Courses. A Path to Progress.”
+
+Highlight “A Path to Progress” in teal.
+
+Supporting paragraph:
+
+“We make online learning practical, flexible, and accessible, helping you turn curiosity into useful skills and meaningful progress.”
+
+Below the heading, create six elegant feature cards in a three-column desktop grid.
+
+Card 1 — Expert-Led Learning
+Description: “Learn from knowledgeable instructors who explain concepts clearly and practically.”
+Icon: graduation cap or user-check.
+
+Card 2 — Flexible Online Access
+Description: “Study at your own pace and access learning resources from wherever you are.”
+Icon: laptop or monitor.
+
+Card 3 — Arabic and English
+Description: “Choose the learning experience and language that works best for you.”
+Icon: languages.
+
+Card 4 — Practical Skills
+Description: “Build useful skills through exercises, projects, and real-world examples.”
+Icon: code or briefcase.
+
+Card 5 — Guided Progress
+Description: “Follow structured learning paths and track your development.”
+Icon: chart or trending-up.
+
+Card 6 — Learning Community
+Description: “Stay motivated through supportive learning resources and community activities.”
+Icon: users.
+
+Card styling:
+- White backgrounds.
+- Subtle border.
+- Rounded corners around 18px.
+- Generous internal padding.
+- Colored icon blocks with varied but coordinated cyan, mint, lavender, yellow, and blue backgrounds.
+- Short, readable descriptions.
+- Small circular arrow or icon at the bottom-right.
+- Soft elevation and a slight upward movement on hover.
+
+Use CSS Grid and consistent card heights. In Arabic mode, adjust text alignment and directional icon positioning.
+
+# 9. FEATURED COURSES SECTION
+
+This is one of the most important sections. Design it as a professional online course discovery area.
+
+Add a heading:
+“Find the Right Course for Your Goals”
+
+Supporting text:
+“Explore practical courses designed to help you learn new skills and move forward with confidence.”
+
+Add a functional category filter bar with these categories:
+- All Courses
+- English Language
+- Arabic Language
+- Web Development
+- Digital Skills
+- Business & Career
+- Personal Development
+
+Add a search input that filters courses by title, description, category, and available language.
+
+Create a responsive grid of at least six detailed course cards using realistic educational content.
+
+Suggested courses:
+
+Course 1: English Communication Essentials
+Category: English Language
+Level: Beginner
+Language: English
+Duration: 6 weeks
+Format: Self-paced
+Description: “Develop everyday speaking, listening, vocabulary, and grammar skills for confident communication.”
+CTA: “View Course”
+
+Course 2: Modern Standard Arabic Foundations
+Category: Arabic Language
+Level: Beginner
+Language: Arabic
+Duration: 8 weeks
+Format: Guided learning
+Description: “Build your Arabic reading, writing, vocabulary, and communication foundations.”
+CTA: “View Course”
+
+Course 3: HTML, CSS & JavaScript Fundamentals
+Category: Web Development
+Level: Beginner
+Language: English
+Duration: 8 weeks
+Format: Project-based
+Description: “Learn to create responsive websites using the core technologies of the web.”
+CTA: “View Course”
+
+Course 4: Digital Skills for the Modern Workplace
+Category: Digital Skills
+Level: Beginner
+Language: English and Arabic
+Duration: 4 weeks
+Format: Self-paced
+Description: “Improve digital productivity, online collaboration, and essential technology skills.”
+CTA: “View Course”
+
+Course 5: Professional Communication & Career Growth
+Category: Business & Career
+Level: Intermediate
+Language: English
+Duration: 5 weeks
+Format: Guided learning
+Description: “Improve workplace communication, presentation skills, and professional confidence.”
+CTA: “View Course”
+
+Course 6: Productivity and Personal Development
+Category: Personal Development
+Level: Beginner
+Language: English and Arabic
+Duration: 3 weeks
+Format: Self-paced
+Description: “Build better learning habits, organize your goals, and improve your everyday productivity.”
+CTA: “View Course”
+
+Course card design:
+- High-quality course cover images or custom illustrations.
+- Small category badges.
+- Course title with clear typography.
+- Concise course description.
+- Instructor mini-profile or instructor avatar.
+- Level and duration metadata with icons.
+- Course language label.
+- Clear CTA link or button.
+- Optional editable price field that can be hidden until real pricing is decided.
+
+Use distinct but visually consistent imagery. For the web development course, use an illustration of a laptop with code. For language courses, use relevant books, letters, conversation illustrations, or learning scenes. For business courses, use professional learning imagery.
+
+Do not reuse the same image for every course.
+
+Implement:
+- Working category filters.
+- Working search.
+- Combined search and category filtering.
+- An attractive empty state if no courses match.
+- Correct Arabic translations for all cards and filters.
+- A “Load More Courses” button if additional courses are implemented.
+- Smooth but restrained card transitions.
+
+Course cards must be generated from a JavaScript course data array to keep the code maintainable.
+
+Use believable sample course content but do not fabricate instructor credentials, student counts, course ratings, testimonials, or institutional accreditation.
+
+# 10. LEARNING PATHS SECTION
+
+Add a section introducing structured learning journeys.
+
+Heading:
+“Choose Your Learning Path”
+
+Description:
+“Start with the essentials, develop your confidence, and progress toward your personal or professional goals.”
+
+Create three attractive path cards:
+
+1. Language & Communication
+   - English communication
+   - Arabic foundations
+   - Vocabulary and speaking practice
+
+2. Digital & Technology Skills
+   - Computer fundamentals
+   - Web development basics
+   - Digital productivity
+
+3. Career & Personal Growth
+   - Professional communication
+   - Workplace skills
+   - Productivity and goal setting
+
+Each card should have a distinct illustration or icon, three concise learning milestones, and an “Explore Learning Path” CTA.
+
+Use a soft pale-blue background with subtle decorative geometry. Maintain a premium and uncluttered appearance.
+
+# 11. HOW IT WORKS SECTION
+
+Create a clear three-step learning process.
+
+Heading:
+“Start Learning in Three Simple Steps”
+
+Step 1 — Explore
+“Discover courses that match your interests, goals, and current skill level.”
+
+Step 2 — Enroll
+“Choose a course and follow the enrollment instructions.”
+
+Step 3 — Learn & Grow
+“Study the lessons, practice your skills, and continue progressing.”
+
+Use three cards or a connected horizontal step layout with large numbered circles, icons, short descriptions, and a subtle connector line on desktop.
+
+Stack the steps vertically on mobile.
+
+Use engaging but restrained animations when the section becomes visible.
+
+Do not claim that enrollment, course access, payments, or certificate issuance actually work unless a real backend has been connected.
+
+# 12. INSTRUCTORS SECTION
+
+Create a professional instructor introduction section.
+
+Heading:
+“Learn From People Who Care About Teaching”
+
+Include three instructor profile cards featuring:
+- Original or appropriately licensed portrait imagery.
+- Name.
+- Teaching subject.
+- Short biography.
+- Language taught.
+
+Use clearly identified sample profiles, with editable sample content, rather than implying that fictional instructors are real employees.
+
+Example subjects:
+- English Communication.
+- Arabic Language.
+- Web Development and Digital Skills.
+
+Keep the cards professional, friendly, and consistent with the website's visual identity.
+
+Do not invent formal qualifications, certifications, employment history, or years of experience.
+
+Include a CTA: “Become an Instructor” that leads to the contact section or a dedicated informational page.
+
+# 13. STUDENT SUCCESS AND TESTIMONIALS
+
+Add a visually appealing testimonial section with a pale cyan background, subtle abstract shapes, and white testimonial cards.
+
+Heading:
+“Learning That Moves You Forward”
+
+Design three testimonial cards with:
+- A sample learner avatar or initials.
+- Clearly labeled sample name.
+- Course category.
+- Short, natural-sounding example feedback.
+- Quote icon.
+
+These must be treated as demonstration content, not genuine reviews. Store testimonials in an editable JavaScript data array and clearly identify them as sample testimonials in the source or content configuration. Do not fabricate ratings or claim that the testimonials come from verified students.
+
+If genuine testimonials are later supplied, the sample content can be replaced.
+
+Optional carousel controls may be included, but the section must remain fully usable without JavaScript animation.
+
+# 14. CERTIFICATES AND LEARNING ACHIEVEMENTS
+
+Create a visually polished section promoting course completion and personal achievement.
+
+Heading:
+“Celebrate Every Step Forward”
+
+Description:
+“Make your progress visible as you complete learning milestones and build new skills.”
+
+Display a high-quality original certificate illustration with a decorative border, signature-style placeholders, a course title, and a small achievement badge. Clearly mark the image as an illustrative certificate design rather than a real credential.
+
+Include three concise benefits:
+- Track course completion.
+- Review learning milestones.
+- Showcase skills you have developed.
+
+Use honest wording. Do not imply that certificates are accredited, professionally recognized, or guaranteed unless the institution later confirms those claims.
+
+Add a CTA: “Explore Courses”.
+
+# 15. FAQ SECTION
+
+Create a professional, accessible accordion with at least six questions.
+
+Include:
+1. What types of courses does NexaLearn offer?
+2. Can I learn in Arabic or English?
+3. Do I need previous experience to enroll?
+4. Can I study at my own pace?
+5. How do I enroll in a course?
+6. Will I receive a certificate after completing a course?
+
+Answers should be clear and honest.
+
+Explain that available languages, course requirements, learning schedules, enrollment arrangements, and certificates depend on the particular course and the institute's actual policies.
+
+Implement a working accordion using vanilla JavaScript. Use semantic buttons, aria-expanded attributes, keyboard accessibility, and smooth expansion where appropriate.
+
+Translate every question and answer into Arabic.
+
+# 16. CONTACT AND CONVERSION SECTION
+
+Create a strong closing CTA section before the footer.
+
+Use a soft turquoise-to-pale-cyan background with abstract curves or decorative shapes.
+
+Heading:
+“Your Next Learning Journey Starts Here”
+
+Supporting text:
+“Discover a course, develop a skill, and take the next step toward your goals.”
+
+Include:
+- Primary CTA: “Explore Courses”.
+- Secondary CTA: “Contact Our Team”.
+- A small decorative illustration of a laptop, book, or learning dashboard.
+
+Below this section, create a professional contact area with a form containing:
+- Full Name.
+- Email Address.
+- Course of Interest.
+- Preferred Language.
+- Message.
+- Submit button labeled “Send Inquiry”.
+
+Requirements:
+- Use appropriate HTML input types.
+- Add visible labels.
+- Validate required fields and email format using JavaScript.
+- Display clear success or error feedback.
+- Include accessible status messages.
+- Translate all labels and validation messages into Arabic.
+
+Since this is a static frontend, do not pretend that a message has been delivered to an actual server. Implement a clearly documented integration point for connecting the form to a backend or form service later. If no submission service is configured, show an honest message explaining that the form is a frontend demonstration and provide a configurable email contact link instead.
+
+Use a configurable institute email address in one clearly marked JavaScript or HTML configuration location. Do not invent a real email address, telephone number, or physical address.
+
+# 17. PROFESSIONAL FOOTER
+
+Create a clean, dark navy footer inspired by the reference image's compact, organized footer.
+
+Use a deep navy background such as #101A32, with white text and turquoise highlights.
+
+Desktop layout:
+- First column: logo, brief institute description, and social links.
+- Second column: Quick Links.
+- Third column: Explore Courses.
+- Fourth column: Contact Information.
+
+Include:
+- Home.
+- About Us.
+- Courses.
+- Learning Paths.
+- Instructors.
+- Blog.
+- Contact.
+- Privacy Policy.
+- Terms and Conditions.
+
+Include configurable contact details for:
+- Email.
+- Telephone.
+- Location, if applicable.
+
+Do not invent actual contact information. Use clearly marked configuration values or non-public setup instructions in the code where genuine details are required.
+
+Add social links with accessible labels. Use only configured real URLs; hide unavailable social links instead of inventing profiles.
+
+At the bottom, include:
+- Copyright year generated dynamically with JavaScript.
+- Institute name.
+- Privacy Policy link.
+- Terms link.
+- Language toggle or a link to switch language.
+
+Ensure the footer is fully translated into Arabic and its layout mirrors correctly in RTL mode.
+
+# 18. IMAGE AND ILLUSTRATION REQUIREMENTS
+
+All image areas must be intentionally designed and populated.
+
+If image generation is available in the website-building environment, create or source suitable original visual assets for:
+- The hero illustration.
+- Course covers.
+- Instructor portraits.
+- Learning path illustrations.
+- The certificate preview.
+- Optional decorative learning imagery.
+
+Use an illustration style consistent across the entire site: premium 3D editorial illustrations, soft lighting, clean compositions, realistic materials, friendly professional subjects, and turquoise/navy accents.
+
+Avoid:
+- Inconsistent art styles.
+- Blurry or low-resolution imagery.
+- Unrelated images.
+- Generic repeated stock photos.
+- Broken external image links.
+- Empty image boxes.
+- Watermarked assets.
+- Brand logos belonging to other organizations.
+
+If image generation is unavailable, use reliable image sources or custom inline SVG illustrations and CSS-designed visual elements. Use distinct assets for different courses.
+
+For external image URLs, use sources that allow the intended use and include sensible fallback backgrounds or alternate illustrations. Provide descriptive alt text for meaningful images and empty alt attributes for decorative images.
+
+Use image dimensions, object-fit, and aspect ratios to prevent layout shifts. Optimize images for performance.
+
+The finished site must still look complete if an optional external image fails to load.
+
+# 19. BACKGROUND EFFECTS AND VISUAL DEPTH
+
+Use the following visual details to reproduce the premium character of the reference without copying it exactly:
+- Large soft cyan gradient shapes behind the hero illustration.
+- Rounded organic circles or abstract wave shapes.
+- Very subtle geometric outlines.
+- Floating mini-cards around the hero image.
+- Light shadows below major content panels.
+- Thin borders on cards.
+- Small circular icon backgrounds.
+- Rounded pills for category badges.
+- Consistent 16–24px card radii.
+- A restrained shadow system with low opacity.
+- Alternating white and very pale cyan sections.
+- Spacious section padding.
+
+Decorative elements should be created with CSS or SVG and must never obstruct text or interaction.
+
+Avoid excessive gradients, heavy glassmorphism, large dark backgrounds throughout the page, oversized animations, or cluttered decoration.
+
+# 20. BUTTONS AND INTERACTIONS
+
+Create a reusable button design system.
+
+Primary buttons:
+- Teal or turquoise gradient.
+- White text.
+- Rounded pill shape.
+- Comfortable horizontal padding.
+- Small arrow icon.
+- Subtle shadow.
+- Smooth hover transition.
+
+Secondary buttons:
+- White or transparent background.
+- Teal or navy text.
+- Thin border.
+- Rounded pill shape.
+
+Button interactions:
+- Slight upward movement on hover.
+- Subtle shadow enhancement.
+- Clear keyboard focus rings.
+- Pressed-state feedback.
+- Appropriate disabled states.
+- Smooth color transitions.
+
+Use actual anchor links for navigation and buttons for actions. Ensure all interactive elements have meaningful behavior.
+
+# 21. ANIMATIONS AND MICRO-INTERACTIONS
+
+Add tasteful, performance-friendly animations using CSS and vanilla JavaScript.
+
+Implement:
+- Gentle hero entrance animation.
+- Subtle floating effect for selected decorative elements.
+- Fade-up section reveals using IntersectionObserver.
+- Course-card hover elevation.
+- Button hover and active states.
+- Smooth scrolling for in-page links.
+- FAQ accordion transitions.
+- Mobile navigation animation.
+- Optional statistic counter animation.
+- Subtle transitions when switching languages.
+
+Keep animations short and elegant.
+
+Respect prefers-reduced-motion. When reduced motion is enabled, disable nonessential movement and reveal effects.
+
+Do not animate every element. The page should feel refined, fast, and professional.
+
+# 22. RESPONSIVE DESIGN REQUIREMENTS
+
+The site must work properly at these viewport widths:
+- 320px small mobile.
+- 375px mobile.
+- 430px large mobile.
+- 768px tablet.
+- 1024px laptop.
+- 1280px desktop.
+- 1440px wide desktop.
+
+Desktop:
+- Centered content container.
+- Spacious two-column hero.
+- Three-column course and feature grids where appropriate.
+- Horizontal navigation.
+- Balanced whitespace.
+
+Tablet:
+- Reduced section spacing.
+- Two-column grids.
+- Properly sized hero illustration.
+- Navigation adapted to available space.
+- Avoid narrow text columns.
+
+Mobile:
+- Compact header.
+- Functional hamburger menu.
+- Stacked hero content.
+- Large, readable heading.
+- Full-width or comfortably sized CTAs.
+- Two-column cards where suitable and one column for narrow screens.
+- Compact statistics layout.
+- Properly wrapped category filters.
+- Full-width search input.
+- No horizontal scrolling.
+- Comfortable touch targets of approximately 44px or larger.
+- Adequate spacing around forms and footer links.
+
+Test RTL and LTR layouts at all major breakpoints. Ensure mirrored layouts do not cause overlapping buttons, misplaced arrows, clipped Arabic text, or reversed icons where reversal is inappropriate.
+
+Use CSS Grid, Flexbox, clamp(), media queries, logical CSS properties such as margin-inline-start and padding-inline-end, and responsive image sizing.
+
+# 23. FUNCTIONAL REQUIREMENTS
+
+Implement the following features using vanilla JavaScript:
+
+1. Mobile navigation toggle.
+2. Sticky header behavior.
+3. Smooth in-page navigation.
+4. Complete English/Arabic language switching.
+5. RTL/LTR direction switching.
+6. Persistent language preference.
+7. Course cards rendered from structured JavaScript data.
+8. Functional course search.
+9. Functional course category filters.
+10. Combined search and category filtering.
+11. Clear filters or reset search.
+12. Course details navigation or a meaningful course-detail modal.
+13. Accessible FAQ accordion.
+14. Contact form validation.
+15. Honest contact-form demo or configured submission integration point.
+16. Current year in the footer.
+17. IntersectionObserver-based reveal effects.
+18. Optional animated statistics.
+19. Accessible mobile-menu behavior.
+20. Graceful fallbacks if optional browser features or storage are unavailable.
+
+Every button must have a meaningful purpose. Do not leave dead links, empty buttons, fake enrollment confirmations, or nonfunctional interactive elements.
+
+For course enrollment, provide a clear enrollment-information modal or course detail panel explaining that the learner must follow the institute's configured enrollment process. Do not claim that a user has enrolled unless a real enrollment backend exists.
+
+For privacy and terms links, provide meaningful lightweight informational pages or properly implemented accessible modals. Do not link to "#" as a permanent substitute for functionality.
+
+# 24. SEO AND ACCESSIBILITY
+
+Implement essential on-page SEO:
+- Meaningful page title.
+- Meta description.
+- Viewport meta tag.
+- Canonical URL configuration point.
+- Theme-color metadata.
+- Open Graph metadata.
+- Semantic header, nav, main, section, article, and footer elements.
+- Correct heading hierarchy.
+- Descriptive image alt text.
+- Descriptive link text.
+- Appropriate language metadata.
+- Crawlable internal links.
+- Natural educational keywords related to online courses, English learning, Arabic learning, web development, and digital skills.
+
+Add structured data only where appropriate and factually supported. Do not claim accreditation, awards, ratings, or verified organizational credentials.
+
+Accessibility:
+- Semantic HTML.
+- Keyboard-accessible navigation.
+- Visible focus states.
+- Proper form labels.
+- Sufficient text contrast.
+- Accessible accordion controls.
+- Accessible modal dialogs with focus handling and Escape-to-close behavior.
+- ARIA labels where necessary.
+- Respect for reduced motion.
+- Avoid relying on color alone to convey meaning.
+
+# 25. PERFORMANCE AND SECURITY
+
+Optimize the website for fast loading and reliable behavior.
+
+Requirements:
+- Use vanilla JavaScript with no unnecessary libraries.
+- Keep CSS organized and reusable.
+- Avoid excessive DOM operations.
+- Use lazy loading for below-the-fold images.
+- Use explicit image dimensions or aspect ratios.
+- Minimize layout shifts.
+- Use defer for external JavaScript files where appropriate.
+- Avoid autoplay video and heavy animations.
+- Avoid unsafe use of innerHTML for user-provided input.
+- Validate form data on the client while explaining that server-side validation is still required.
+- Never expose secret API keys or private credentials in frontend code.
+- Do not include a fake authentication system.
+- Do not pretend that frontend-only data storage provides secure enrollment or administration.
+
+The website must not require a database or build process to render its main public pages.
+
+# 26. HOSTINGER DEPLOYMENT REQUIREMENTS
+
+Deliver the website as a static project suitable for Hostinger shared hosting.
+
+Use this recommended structure:
+
+nexalearn-institute/
+    index.html
+    about.html
+    courses.html
+    course-details.html
+    contact.html
+    privacy-policy.html
+    terms.html
+    assets/
+        css/
+            style.css
+        js/
+            main.js
+            courses.js
+            translations.js
+        images/
+            hero-learning.webp
+            course-english.webp
+            course-arabic.webp
+            course-web-development.webp
+            course-digital-skills.webp
+            course-business.webp
+            course-productivity.webp
+            instructor-1.webp
+            instructor-2.webp
+            instructor-3.webp
+            certificate-preview.webp
+
+Create all essential files and ensure all relative paths work when the project is uploaded to the public_html directory on Hostinger.
+
+You may simplify the file structure when appropriate, but keep HTML, CSS, and JavaScript clearly separated.
+
+The homepage must work directly at index.html. Internal links must work when opened from the hosting root. Avoid filesystem-dependent paths, server-only routing, Node.js commands, or framework-specific deployment steps.
+
+If you create separate pages, share the same visual design system and bilingual translation behavior across all pages. Do not create separate empty pages simply to satisfy the directory structure.
+
+# 27. FINAL QUALITY CONTROL
+
+Before completing the project, review and correct the following:
+
+- The design reflects the premium teal-and-white inspiration without copying the original business identity.
+- The brand identity is original.
+- The homepage has a strong hero section with appropriate imagery.
+- The visual hierarchy is consistent.
+- The header and footer are polished.
+- Every section has appropriate spacing.
+- Cards have consistent dimensions and alignment.
+- Course search and filters work correctly.
+- English and Arabic translations are comprehensive.
+- RTL layout is genuinely supported.
+- The mobile navigation works.
+- No buttons are dead.
+- No image areas are empty.
+- No broken image links remain.
+- No text overlaps or becomes unreadable.
+- Forms show honest validation and submission feedback.
+- No fake enrollment, payment, authentication, or certificate functionality is claimed.
+- No horizontal overflow exists at 320px.
+- Keyboard navigation and focus states work.
+- The site respects reduced-motion preferences.
+- HTML, CSS, and JavaScript contain no unnecessary framework dependencies.
+- All internal links and relative asset paths are correct.
+- The site is ready for static deployment on Hostinger.
+
+# 28. EXECUTION INSTRUCTIONS
+
+Do not respond with a tutorial, explanation, design analysis, or a shortened code example.
+
+Actually generate the complete website project. Create and populate the required HTML, CSS, and JavaScript files, along with the image assets that can be generated or sourced in the current environment.
+
+Prioritize a fully finished, visually polished, interactive website over a generic starter template.
+
+Do not ask me to supply images, colors, content, or layout decisions. Use the design specifications above and make sensible professional decisions independently.
+
+If a feature requires a backend, clearly separate the frontend implementation from the backend integration point and provide an honest user experience rather than simulating successful transactions.
+
+The final result must look like a premium online learning institute website that could be presented to a real client, demonstrated in a portfolio, and deployed on Hostinger shared hosting.
+
+**Begin building the complete website now using only HTML, CSS, and vanilla JavaScript.**

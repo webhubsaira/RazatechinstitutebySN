@@ -1285,11 +1285,15 @@ textarea.form-control {
   margin-bottom: 3.5rem;
 }
 
+.footer-brand {
+  text-align: center;
+}
+
 .footer-brand-image {
   display: block;
   width: 150px;
   height: auto;
-  margin-bottom: 0.75rem;
+  margin: 0 auto 0.75rem;
 }
 
 .footer-desc {
@@ -1298,6 +1302,7 @@ textarea.form-control {
   line-height: 1.65;
   margin-bottom: 1.5rem;
   max-width: 340px;
+  margin-inline: auto;
 }
 
 .footer-col-title {

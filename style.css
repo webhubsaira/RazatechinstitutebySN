@@ -690,16 +690,22 @@ textarea:focus-visible {
 
 .highlights-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem 1rem;
 }
 
 .highlight-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   font-size: 0.875rem;
   color: var(--text-muted);
+  min-width: 0;
+}
+
+.highlight-item span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .highlight-item svg {
@@ -1452,6 +1458,10 @@ textarea.form-control {
 
   .courses-grid {
     grid-template-columns: 1fr;
+  }
+
+  .highlights-list {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .about-cards-grid,

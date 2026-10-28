@@ -936,7 +936,7 @@ textarea:focus-visible {
 
 .form-grid-2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
@@ -959,6 +959,7 @@ textarea:focus-visible {
 
 .form-control {
   width: 100%;
+  min-width: 0;
   padding: 0.85rem 1.15rem;
   border: 1.5px solid var(--border-color);
   border-radius: var(--radius-sm);
@@ -1094,11 +1095,24 @@ textarea.form-control {
   width: 100%;
   max-width: 680px;
   max-height: 90vh;
+  max-height: min(90vh, calc(100dvh - 2.5rem));
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   position: relative;
   transform: translateY(20px) scale(0.97);
   transition: all var(--transition-smooth);
   padding: 2.5rem 2rem;
+}
+
+.modal-container > div:first-of-type {
+  padding-right: 2.5rem;
+}
+
+.modal-container form,
+.modal-container .form-grid-2,
+.modal-container .form-group {
+  min-width: 0;
 }
 
 .modal-overlay.active .modal-container {
@@ -1485,6 +1499,37 @@ textarea.form-control {
 }
 
 @media (max-width: 480px) {
+  .modal-overlay {
+    align-items: flex-start;
+    padding: 0.5rem;
+  }
+
+  .modal-container {
+    width: 100%;
+    max-height: calc(100vh - 1rem);
+    max-height: calc(100dvh - 1rem);
+    padding: 1.5rem 1rem;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-container > div:first-of-type {
+    padding-right: 2rem;
+    margin-bottom: 1rem !important;
+  }
+
+  .modal-container .form-control {
+    font-size: 1rem;
+  }
+
+  .modal-container .form-grid-2 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .modal-container .consent-row {
+    gap: 0.5rem;
+  }
+
   .contact-section {
     padding-block: 3.5rem;
   }

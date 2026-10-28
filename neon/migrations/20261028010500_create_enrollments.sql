@@ -1,23 +1,25 @@
-drop trigger if exists save_verified_signup_enrollment on auth.users;
-drop function if exists public.save_verified_signup_enrollment();
-drop function if exists public.submit_enrollment(uuid, text, text, text, text, text, text, text);
+create table if not exists public.enrollments (
+  submission_id uuid primary key,
+  full_name text not null check (char_length(btrim(full_name)) between 3 and 120),
+  whatsapp_number text not null check (whatsapp_number ~ '^\+?[0-9]{10,15}$'),
+  age_group text not null check (age_group in ('Under 18', '18-25', '26-40', '40+')),
+  course text not null check (course in ('arabic', 'english', 'digital-marketing')),
+  experience_level text not null check (experience_level in ('beginner', 'elementary', 'intermediate')),
+  preferred_time text not null check (preferred_time in ('Flexible', 'Morning', 'Afternoon', 'Evening')),
+  message text not null default '' check (char_length(message) <= 2000),
+  created_at timestamptz not null default now()
+);
 
-alter table public.enrollments
-  alter column user_id drop not null,
-  alter column email drop not null;
+create index if not exists enrollments_created_at_idx
+  on public.enrollments (created_at desc);
 
 create schema if not exists private;
-revoke all on schema private from public, anon, authenticated;
 
-create table private.enrollment_rate_limits (
+create table if not exists private.enrollment_rate_limits (
   ip_hash text primary key check (ip_hash ~ '^[a-f0-9]{64}$'),
   window_started_at timestamptz not null,
   request_count integer not null check (request_count > 0)
 );
-
-revoke all on table private.enrollment_rate_limits from public, anon, authenticated;
-grant usage on schema private to service_role;
-grant all on table private.enrollment_rate_limits to service_role;
 
 create or replace function public.submit_public_enrollment(
   p_submission_id uuid,
@@ -84,8 +86,6 @@ begin
 
   insert into public.enrollments (
     submission_id,
-    user_id,
-    email,
     full_name,
     whatsapp_number,
     age_group,
@@ -96,8 +96,6 @@ begin
   )
   values (
     p_submission_id,
-    null,
-    null,
     btrim(p_full_name),
     p_whatsapp_number,
     p_age_group,
@@ -112,6 +110,4 @@ end;
 $$;
 
 revoke all on function public.submit_public_enrollment(uuid, text, text, text, text, text, text, text, text)
-  from public, anon, authenticated;
-grant execute on function public.submit_public_enrollment(uuid, text, text, text, text, text, text, text, text)
-  to service_role;
+  from public;

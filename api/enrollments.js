@@ -1,12 +1,12 @@
 import { createHmac, randomUUID } from 'node:crypto';
-import { createClient } from '@supabase/supabase-js';
+import { neon } from '@neondatabase/serverless';
 
 const allowedCourses = new Set(['arabic', 'english', 'digital-marketing']);
 const allowedAgeGroups = new Set(['Under 18', '18-25', '26-40', '40+']);
 const allowedExperienceLevels = new Set(['beginner', 'elementary', 'intermediate']);
 const allowedTimes = new Set(['Flexible', 'Morning', 'Afternoon', 'Evening']);
 
-let supabase;
+let sql;
 
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
@@ -45,42 +45,35 @@ export default async function handler(request, response) {
     return sendJson(response, 400, { error: 'Unable to verify request. Please try again.' });
   }
 
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!supabaseUrl || !serviceRoleKey) {
-    console.error('Enrollment API is missing its Supabase server environment variables.');
+  const databaseUrl = process.env.DATABASE_URL;
+  if (!databaseUrl) {
+    console.error('Enrollment API is missing its Neon DATABASE_URL environment variable.');
     return sendJson(response, 503, { error: 'Enrollment is temporarily unavailable. Please try again later.' });
   }
 
   try {
-    if (!supabase) {
-      supabase = createClient(supabaseUrl, serviceRoleKey, {
-        auth: { autoRefreshToken: false, persistSession: false }
-      });
-    }
+    if (!sql) sql = neon(databaseUrl);
 
-    const { error } = await supabase.rpc('submit_public_enrollment', {
-      p_submission_id: randomUUID(),
-      p_full_name: enrollment.fullName.trim(),
-      p_whatsapp_number: enrollment.whatsappNumber.trim().replace(/[\s-]/g, ''),
-      p_age_group: enrollment.ageGroup,
-      p_course: enrollment.course,
-      p_experience_level: enrollment.experienceLevel,
-      p_preferred_time: enrollment.preferredTime,
-      p_message: enrollment.message.trim(),
-      p_ip_hash: createHmac('sha256', serviceRoleKey).update(ipAddress).digest('hex')
-    });
-
-    if (error) {
-      if (error.message === 'rate_limited') {
-        return sendJson(response, 429, { error: 'Too many requests. Please wait a little while and try again.' });
-      }
-      console.error('Supabase enrollment write failed:', error);
-      return sendJson(response, 500, { error: 'We could not save your request. Please try again.' });
-    }
+    await sql`
+      select public.submit_public_enrollment(
+        ${randomUUID()}::uuid,
+        ${enrollment.fullName.trim()},
+        ${enrollment.whatsappNumber.trim().replace(/[\s-]/g, '')},
+        ${enrollment.ageGroup},
+        ${enrollment.course},
+        ${enrollment.experienceLevel},
+        ${enrollment.preferredTime},
+        ${enrollment.message.trim()},
+        ${createHmac('sha256', databaseUrl).update(ipAddress).digest('hex')}
+      )
+    `;
 
     return sendJson(response, 201, { message: 'Enrollment request received.' });
   } catch (error) {
+    if (error instanceof Error && error.message.includes('rate_limited')) {
+      return sendJson(response, 429, { error: 'Too many requests. Please wait a little while and try again.' });
+    }
+
     console.error('Enrollment API failed:', error);
     return sendJson(response, 500, { error: 'We could not save your request. Please try again.' });
   }

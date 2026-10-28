@@ -1,29 +1,30 @@
 # Raza Tech Institute
 
-Static Vite site with Vercel API routes for enrollment submissions and Supabase for storage.
+Static Vite site with a Vercel API route and Neon Postgres for enrollment submissions.
 
-## Supabase setup
+## Set up Neon
 
-1. Create a Supabase project and open **SQL Editor**.
-2. For a new database, run these migrations in order:
-   - [`supabase/migrations/20261027220000_create_enrollments.sql`](./supabase/migrations/20261027220000_create_enrollments.sql)
-   - [`supabase/migrations/20261028010500_public_whatsapp_enrollments.sql`](./supabase/migrations/20261028010500_public_whatsapp_enrollments.sql)
-3. If the original enrollments migration has already been run, run only the second migration. It removes the old email-verification flow and allows enrollment records without user accounts or email addresses.
-4. In **Project Settings → API**, copy the Project URL and the `service_role` secret key for the Vercel environment variables. The service-role key is secret and must never be exposed in browser code.
+1. Sign in to [Neon](https://neon.tech/) and create a project. Choose a region near your Vercel deployment.
+2. Open the project dashboard and select **SQL Editor**.
+3. Open [`neon/migrations/20261028010500_create_enrollments.sql`](./neon/migrations/20261028010500_create_enrollments.sql), copy its full contents, paste them into the SQL Editor, and run the script. It creates the enrollment table, a private rate-limit table, and the database function used by the API. Run it once per database.
+4. In the Neon dashboard, open **Connect** and copy the connection string for your database. Use the pooled connection string if Neon offers a pooled option. Keep the whole string private.
 
-The second migration creates the rate-limit table and a database function that only the server-side service role can execute. Row-level security stays enabled on `public.enrollments`; the browser cannot write directly to the table. The API limits each client IP to five submissions per 15 minutes.
+## Configure and deploy on Vercel
 
-## Deploy to Vercel
+1. Import this repository into Vercel. Set the build command to `npm run build` and the output directory to `dist`.
+2. In your Vercel project, open **Settings → Environment Variables** and add `DATABASE_URL`. Paste the Neon connection string as the value and select every environment you use (Production, Preview, and/or Development).
+3. Save the variable and redeploy the project so the serverless API picks it up.
+4. Open the deployed site, submit a test enrollment, then check **Neon → SQL Editor** with `select * from public.enrollments order by created_at desc;` to confirm it was saved.
+5. If submission fails, check **Vercel → Deployments → latest deployment → Functions → `/api/enrollments` → Logs**. Confirm `DATABASE_URL` is configured and that the migration ran against the same Neon database referenced by the connection string.
 
-1. Import the repository into Vercel. Use `npm run build` as the build command and `dist` as the output directory.
-2. Add these environment variables in **Project Settings → Environment Variables**:
-   - `SUPABASE_URL` — the project URL, for example `https://your-project-id.supabase.co` (do not add `/rest/v1/`).
-   - `SUPABASE_SERVICE_ROLE_KEY` — the Supabase service-role secret key.
-3. Add the variables to the Vercel environments you use and redeploy.
-4. Test an enrollment from the deployed site. A successful submission is stored in **Supabase → Table Editor → `enrollments`**. The team can use the submitted WhatsApp number to contact the student.
-
-The form does not collect email addresses or passwords and does not send emails. Keep the service-role key in Vercel's server environment only; never prefix it with `VITE_`.
+The connection string is used only by the server-side API route. Do not put it in browser code, commit it, or use a `VITE_` prefix. The API limits each client IP to five submissions per 15 minutes.
 
 ## Local development
 
-The Vercel API route is at [`api/enrollments.js`](./api/enrollments.js). To test submissions locally, use the Vercel CLI (`vercel dev`) and set the two server environment variables in Vercel's local environment. Vite's `npm run dev` serves the static site but does not execute Vercel API routes.
+1. Copy `.env.example` to `.env.local` and replace the example `DATABASE_URL` with your Neon connection string. Do not commit `.env.local`.
+2. Install the Vercel CLI if needed, then run `npx vercel dev` from the project directory.
+3. Open the local URL printed by Vercel and submit a test form. Vercel's local development server runs both the site and `/api/enrollments`; `npm run dev` starts Vite only and does not run the API route.
+
+## Existing submissions
+
+Changing the application database does not copy existing records or delete the old Supabase project. New submissions are written to Neon after deployment. To bring over previous submissions, export the old `enrollments` table as CSV from Supabase and import that CSV into the Neon `public.enrollments` table, mapping the matching columns. The new table has no `user_id` or `email` columns.

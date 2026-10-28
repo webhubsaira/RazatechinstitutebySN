@@ -1248,6 +1248,22 @@ textarea.form-control {
   margin-bottom: 1.75rem;
 }
 
+.contact-channel-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  min-width: 0;
+  color: inherit;
+}
+
+.contact-channel-link > div:last-child {
+  min-width: 0;
+}
+
+.contact-channel-link:hover .contact-channel-val {
+  color: var(--secondary-green);
+}
+
 .contact-channel-icon {
   width: 44px;
   height: 44px;
